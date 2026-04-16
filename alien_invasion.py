@@ -35,10 +35,32 @@ class AlienInvasion:
         self.laser_sound=pygame.mixer.Sound(self.settings.laser_sound)
         self.laser_sound.set_volume(0.7)
 
+        self.impact_sound=pygame.mixer.Sound(self.settings.impact)
+        self.impact_sound.set_volume(0.7)
+
         self.ship=Ship(self, Arsenal(self))
         self.alien_fleet=AlienFleet(self)
         self.alien_fleet.create_fleet()
     
+    def _check_collisions(self):
+        if self.ship.check_collisions(self.alien_fleet.fleet):
+            self._reset_level()
+        
+        #if self.alien_fleet.check_fleet_bottom():
+        #    self._reset_level()
+        #
+        #collisions=self.alien_fleet.check_collisions(self.ship.arsenal.arsenal)
+        #if collisions:
+        #    self.impact_sound.play()
+        #    self.impact_sound.fadeout(500)
+
+
+    def _reset_level(self):
+        self.ship.arsenal.arsenal.empty()
+        self.alien_fleet.fleet.empty()
+        self.alien_fleet.create_fleet()
+
+
     def run_game(self)->None:
         """Main game loop. Checks for events and updates the screen
         """
@@ -47,6 +69,7 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self.alien_fleet.update_fleet()
+            self._check_collisions()
 
             self._update_screen()
             self.clock.tick(self.settings.fps)
@@ -71,6 +94,7 @@ class AlienInvasion:
                 self._check_keydown_event(event)
             elif event.type==pygame.KEYUP:
                 self._check_keyup_event(event)
+
     def _check_keydown_event(self, event):
         """processes the key press events. Arrows move the ship, Q closes the game,
         SPACE fires the lasers
