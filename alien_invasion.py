@@ -48,6 +48,9 @@ class AlienInvasion:
         self.game_active=True
     
     def _check_collisions(self):
+        """Checks collisions between player and aliens, bullets and aliens, 
+        aliens and screen bottom
+        """
         if self.ship.check_collisions(self.alien_fleet.fleet):
             self._check_game_status()
         
@@ -63,6 +66,8 @@ class AlienInvasion:
             self._reset_level()
 
     def _check_game_status(self):
+        """resets the level or ends the game depending on remaining lives
+        """
         if self.game_stats.ships_left>0:
             self.game_stats.ships_left-=1
             self._reset_level()
@@ -73,6 +78,8 @@ class AlienInvasion:
         print(self.game_stats.ships_left)
 
     def _reset_level(self):
+        """Erases the bullets and the fleet, generates a new one
+        """
         self.ship.arsenal.arsenal.empty()
         self.alien_fleet.fleet.empty()
         self.alien_fleet.create_fleet()
