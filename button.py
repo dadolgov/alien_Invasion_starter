@@ -8,7 +8,7 @@ if TYPE_CHECKING:
     from alien_invasion import AlienInvasion
 
 class Button:
-    def __init__(self, game:AlienInvasion,msg)->None:
+    def __init__(self, game:"AlienInvasion",msg)->None:
         self.game=game
         self.screen=game.screen
         self.boundaries=game.screen.get_rect()
@@ -24,7 +24,7 @@ class Button:
         self.msg_image_rect.center=self.rect.center
 
     def draw(self)->None:
-        self.screen.fill(self.settinfs.button_color, self.rect)
+        self.screen.fill(self.settings.button_color, self.rect)
         self.screen.blit(self.msg_image, self.msg_image_rect)
     
     def check_clicked(self, mouse_pos)->None:
