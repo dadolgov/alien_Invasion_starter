@@ -39,6 +39,8 @@ class Ship:
         self.arsenal=arsenal
 
     def _center_ship(self):
+        """resets the ship positioning
+        """
         self.rect.midbottom=self.boundaries.midbottom
         self.x=float(self.rect.x)
     
