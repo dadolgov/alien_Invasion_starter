@@ -158,6 +158,7 @@ class AlienInvasion:
         mouse_pos=pygame.mouse.get_pos()
         if self.play_button.check_clicked(mouse_pos):
             self.restart_game()
+            self.HUD.update_level()
 
     def _check_keydown_event(self, event):
         """processes the key press events. Arrows move the ship, Q closes the game,
