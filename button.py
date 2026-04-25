@@ -11,7 +11,7 @@ class Button:
     """The 'PLAY' button that starts the game
     """
     def __init__(self, game:"AlienInvasion",msg)->None:
-        """_summary_
+        """sets up the PLAY button parameters
 
         Args:
             game (AlienInvasion): reference to the game

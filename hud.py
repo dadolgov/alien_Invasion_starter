@@ -1,3 +1,7 @@
+"""Heads-up display for displaying player's scores, lives and current level
+Author: Dmitrii Dolgov
+Date:4/25/2026
+    """
 import pygame.font
 
 #from typing import TYPE_CHECKING
@@ -9,7 +13,7 @@ class HUD:
     """Heads-up display, portrays scores, lives and currnet level
     """
     def __init__(self, game):
-        """_summary_
+        """sets up initial HUD parameters
 
         Args:
             game (AlienInvasion): reference to the current game instance
